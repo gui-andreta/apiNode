@@ -30,6 +30,13 @@ server.post('/videos', (request, reply) => {
     const { title, description, duration } = request.body
 
     database.create({
+        /* outra maneira de fazer isso seria:
+        title = title
+        description = description
+        duration = duration
+        */
+       
+       //Como variaveis e parametros tem o mesmo nome, podemos usar a "Short Sintaxe"
         title,
         description,
         duration,
