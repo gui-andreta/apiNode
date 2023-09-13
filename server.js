@@ -1,7 +1,7 @@
 /* Servidor usando Fastify */
 import { fastify } from 'fastify'
-//import { DatabaseMemory } from "./database-memory.js";
-import { DatabasePostgres } from './database-postgres.js';
+//import { DatabaseMemory } from "./DataBase/database-memory.js";
+import { DatabasePostgres } from './DataBase/database-postgres.js';
 
 //Instanciando Objeto para usar o framework
 const server = fastify()
