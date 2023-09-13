@@ -1,21 +1,23 @@
 /* Servidor usando Fastify */
 import { fastify } from 'fastify'
-import { DatabaseMemory } from "./database-memory.js";
+//import { DatabaseMemory } from "./database-memory.js";
+import { DatabasePostgres } from './database-postgres.js';
 
 //Instanciando Objeto para usar o framework
 const server = fastify()
 
-const database = new DatabaseMemory()
+//const database = new DatabaseMemory()
+const database = new DatabasePostgres()
 
 // Definindo a rota do servidor
 // Usando '/' -> Rais do projeto
 // (JS PURO) Request, Response => (FASTIFY) Request, Reply
-server.post('/videos', (request, reply) => {
+server.post('/videos', async (request, reply) => {
 
     //Criando o Request Body
     const { title, description, duration } = request.body
 
-    database.create({
+    await database.create({
         /* outra maneira de fazer isso seria:
         title: title
         description: description
@@ -31,12 +33,12 @@ server.post('/videos', (request, reply) => {
     return reply.status(201).send()
 })
 
-server.get('/videos', (request, reply) => {
+server.get('/videos', async (request, reply) => {
     const search = request.query.search
 
     console.log(search)
 
-    const videos = database.list(search)
+    const videos = await database.list(search)
 
     console.log(videos)
 
@@ -44,11 +46,11 @@ server.get('/videos', (request, reply) => {
 })
 
 //O /:id que esta no link se chama Route Parameter
-server.put('/videos/:id', (request, reply) => {
+server.put('/videos/:id', async (request, reply) => {
     const videoId = request.params.id
     const { title, description, duration } = request.body
 
-    database.update(videoId, {
+    await database.update(videoId, {
         title,
         description,
         duration,
@@ -57,16 +59,16 @@ server.put('/videos/:id', (request, reply) => {
     return reply.status(204).send()
 })
 
-server.delete('/videos/:id', (request, reply) => {
+server.delete('/videos/:id', async (request, reply) => {
     const videoId = request.params.id
 
-    database.delete(videoId)
+    await database.delete(videoId)
 
     return reply.status(204).send()
 })
 
 server.listen({
-    port: 3333,
+    port: process.env.PORT ?? 3333,
 })
 
 /* Servidor feito em JS limpo */
