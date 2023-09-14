@@ -23,27 +23,31 @@ Antes de começar, certifique-se de ter o seguinte instalado em sua máquina:
 
 ## Configuração do Banco de Dados
 
-1. Faça a configuração do seu .env com as informações dos seu Banco de Dados - [Mais Instruções](https://neon.tech/docs/connect/connect-from-any-app)
-2. Crie a base de dados "videos" e rode o seguinte comando no seu terminal:
+1. Faça a configuração do seu .env com as informações do seu Banco de Dados - [Mais Instruções](https://neon.tech/docs/connect/connect-from-any-app)
+2. Crie a base de dados "videos" e execute o seguinte comando no seu terminal:
 
     ```bash
     node create-table.js
 
-3. Caso queira usar uma porta configurada no seu .env, fiqeu a vontade, mas também é possível rodar o projeto diretamente da porta 3333
+3. Caso queira usar uma porta configurada em seu .env, fique a vontade, mas também é possível rodar o projeto diretamente da porta 3333 já configurada
 
 ## Execução do Projeto
 
 1. Inicie o servidor da API:
+
     ```bash
     npm start
+
 - Também é possível executar da seguinte maneira:
+  
     ```bash
     npm run dev
-2. A API estará disponivél em `http://localhost:3333` (ou na porta definida por você no .env)
+
+2. A API estará disponível em `http://localhost:3333` (ou na porta definida por você no .env)
 
 ## Rotas da API
 
-1. Você poderá fazer os testes das rotas usando o arquivo `routes.http` caso esteja usando o VSCode, instale a extenção `Rest Client`
+1. Você poderá fazer os testes das rotas usando o arquivo `routes.http` caso esteja usando o VSCode, só é necessário fazer a instalação da extenção -> `Rest Client`
 
 ### Rotas:
 
